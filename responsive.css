@@ -1,32 +1,63 @@
-@media screen and (min-width: 1200px) {
-	.homer {width:166.5px;height:125px;
-	background:url(../comp20-mcarringtonfair/responsive/homer.jpg)0 0px;}
+.homer {
+	background:url(homer.jpg)100 0px;
+	width:166.5px;
+	height:125px;
 }
-@media screen and (min-width: 1100px) and (max-width:1200px){
-	.homer{width:166.5px;height:125px;
-	background:url(../comp20-mcarringtonfair/responsive/homer.jpg) 166.5 0px;}
+/*
+@media only screen and (min-width: 1200px) {
+	.homer {
+		background:url(homer.jpg)0 0px;
+		width:166.5px;
+		height:125px;
+	}
 }
-@media screen and (min-width:1000px) and (max-width:1100px){
-	.homer{width:166.5px;height:125px;
-	background:url(../comp20-mcarringtonfair/responsive/homer.jpg)0 125px;}
+@media only screen and (min-width: 1100px) and (max-width:1200px){
+	.homer{
+		background:url(homer.jpg) 166.5 0px;
+		width:166.5px;
+		height:125px;
+	}
 }
-@media screen and (min-width:900px) and (max-width:1000px){
-	.homer{width:166.5px;height:125px;
-	background:url(../comp20-mcarringtonfair/responsive/homer.jpg)166.5 125px;}
+@media only screen and (min-width:1000px) and (max-width:1100px){
+	.homer{
+		background:url(homer.jpg)0 125px;
+		width:166.5px;
+		height:125px;
+	}
 }
-@media screen and (min-width:800px) and (max-width:900px){
-	.homer{width:166.5px;height:125px;
-	background:url(../comp20-mcarringtonfair/responsive/homer.jpg)0 250px;}
+@media only screen and (min-width:900px) and (max-width:1000px){
+	.homer{
+		background:url(homer.jpg)166.5 125px;
+		width:166.5px;
+		height:125px;
+	}
 }
-@media screen and (min-width:700px) and (max-width:800px){
-	.homer{width:166.5px;height:125px;
-	background:url(../comp20-mcarringtonfair/responsive/homer.jpg)166.5 250px;}
+@media only screen and (min-width:800px) and (max-width:900px){
+	.homer{
+		background:url(homer.jpg)0 250px;
+		width:166.5px;
+		height:125px;
+	}
 }
-@media screen and (min-width:600px) and (max-width:700px){
-	.homer{width:166.5px;height:125px;
-	background:url(../comp20-mcarringtonfair/responsive/homer.jpg)0 375px;}
+@media only screen and (min-width:700px) and (max-width:800px){
+	.homer{
+		background:url(homer.jpg)166.5 250px;
+		width:166.5px;
+		height:125px;
+	}
 }
-@media screen and (max-width:600px){
-	.homer{width:166.5px;height:125px;
-	background:url(../comp20-mcarringtonfair/responsive/homer.jpg)166.5 375px;}
+@media only screen and (min-width:600px) and (max-width:700px){
+	.homer{
+		background:url(homer.jpg)0 375px;
+		width:166.5px;
+		height:125px;
+	}
 }
+@media  only screen and (max-width:600px){
+	.homer{
+		background:url(homer.jpg)166.5 375px;
+		width:166.5px;
+		height:125px;
+	}
+}
+*/
