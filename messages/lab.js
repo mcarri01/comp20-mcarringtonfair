@@ -15,7 +15,7 @@ function send(message){
 	var text = "";
 	for (var i = 0; i < message.length; i++){
 		text += message[i]['id'] + message[i]['content'] 
-			+ message[i]['username'] + "<br>";
+			+ message[i]['username'] + "<br>" + "<br>";
 	}
 	mes.innerHTML = text;
 }
