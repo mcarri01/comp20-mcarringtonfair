@@ -3,7 +3,8 @@ function parse(){
 	data.onreadystatechange = function(){
 		if (data.readyState == 4 && data.status == 200){
 			var message = JSON.parse(data.responseText);
-			console.log(message);
+			console.log(message['id']);
+			console.log(message['id']['content']);
 			send(message);
 			
 			}
@@ -13,7 +14,7 @@ function parse(){
 }
 function send(message){
 	var mes = document.getElementById('messages');
-	mes.innerHTML = message[1];
+	mes.innerHTML = message['id']['content'];
 	
 }
 
