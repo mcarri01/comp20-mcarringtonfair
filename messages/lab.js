@@ -13,7 +13,7 @@ function parse(){
 }
 function send(message){
 	var mes = document.getElementById('messages');
-	mes.innerHTML = message
+	mes.innerHTML = message[1];
 	
 }
 
