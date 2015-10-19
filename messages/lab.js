@@ -7,7 +7,7 @@ function parse(){
 			
 			}
 		}	
-	data.open("GET", "data.json", true);
+	data.open("GET", " http://messagehub.herokuapp.com/messages.json", true);
 	data.send();
 }
 function send(message){
