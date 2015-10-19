@@ -2,6 +2,10 @@ README for Lab 6 - Messages
 
 Time spent - approximately 2-3 hours
 
+Resources -
+https://xhr.spec.whatwg.org/ 
+https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest http://stackoverflow.com/questions/3038901/how-to-get-the-response-of-xmlhttprequest
+
 The purpose of this lab is to practice parsing JSON data using the XMLHttpRequest object in JavaScript, along with 
 understanding the capabilites of client-side JavaScript.
 
