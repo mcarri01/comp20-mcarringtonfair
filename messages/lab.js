@@ -5,11 +5,13 @@ function parse(){
 			var messages = JSON.parse(data.responseText);
 			send(messages);
 			
-		}
-	}
+			}
+		}	
 	data.open("GET", "data.json", true);
 	data.send();
-	function send(messages){
-		var mes = document.getElementById('messages').innerHTML = "messages.id" + "messages.content" + "messages.username";
-	}
 }
+function send(messages){
+	var mes = document.getElementById('messages') = messages.id + messages.content + messages.username;
+	
+}
+
