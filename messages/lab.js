@@ -14,9 +14,8 @@ function parse(){
 }
 function send(message){
 	var mes = document.getElementById('messages');
-	mes.innerHTML = message[1]['id'];
-	mes.innerHTML = message[1]['content'];
-	mes.innerHTML = message[1]['username'];
+	mes.innerHTML = message[0]['id'] + message[0]['content'] 
+			+ message[0]['username'];
 	
 	
 }
