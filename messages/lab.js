@@ -3,6 +3,7 @@ function parse(){
 	data.onreadystatechange = function(){
 		if (data.readyState == 4 && data.status == 200){
 			var messages = JSON.parse(data.responseText);
+			console.log(messages);
 			send(messages);
 			
 			}
