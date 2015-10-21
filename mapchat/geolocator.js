@@ -8,16 +8,16 @@ function init(){
 		navigator.geolocation.getCurrentPosition(function(position) {
 			Lat = position.coords.latitude;
 			Lng = position.coords.longitude; 
-			createMap(Lat, Lng);
-		)};
+			createMap(Lat, Lng, settings);
+		)};, 
 	}
 	else {
 		alert("Geolocation is not supported by your web browser. Sorry!")};
 }
-function createMap(Lat, Lng){
+function createMap(Lat, Lng, settings){
 	var me = new google.maps.LatLng(Lat, Lng);
 	me.panTo(me);
-	var map_background = new google.maps.Map(document.getElementById("map"), myOptions);
+	var map_background = new google.maps.Map(document.getElementById("map"), settings);
 	var marker = new google.maps.Marker({position: me, title: "Wow does this work?"});
 	marker.setMap(map_background);
 	var infowindow = new google.maps.InfoWindow();
