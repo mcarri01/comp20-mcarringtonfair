@@ -18,15 +18,18 @@ function createMap(Lat, Lng, settings){
 	var me = new google.maps.LatLng(Lat, Lng);
 	console.log(Lat);
 	console.log(Lng);
+	console.log(me);
 	map_background.panTo(me);
 	var map_background = new google.maps.Map(document.getElementById("map"), settings);
-	var marker = new google.maps.Marker({position: me, title: "Wow does this work?"});
+	var marker = new google.maps.Marker({
+		position: me,
+		title: "Wow does this work?"
+	});
 	marker.setMap(map_background);
 	var infowindow = new google.maps.InfoWindow();
 	google.maps.event.addListener(marker, 'click', function(){
 		infowindow.setContent(marker.title);
 		infowindow.open(map, marker);
 	});
-			
 	
 }
