@@ -4,6 +4,7 @@ function init(){
 	var me = new google.maps.LatLng(Lat, Lng);
 	var settings = {zoom:10, center: me, mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
+	var request = XMLHttpRequest();
 	if (navigator.geolocation){
 		navigator.geolocation.getCurrentPosition(function(position) {
 			Lat = position.coords.latitude;
