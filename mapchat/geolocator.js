@@ -11,9 +11,9 @@ function init(){
 			Lat = position.coords.latitude;
 			Lng = position.coords.longitude; 
 			me = new google.maps.LatLng(Lat, Lng);
-			me.panTo(map_background);
+			me.panTo(me);
 			var marker = new google.maps.Marker({position: me, title: "Wow does this work?"});
-			marker.setMap(me);
+			marker.setMap(map_background);
 			google.maps.event.addListener(marker, 'click', function(){
 				infowindow.setContent(marker.title);
 				infowindow.open(map, marker);
