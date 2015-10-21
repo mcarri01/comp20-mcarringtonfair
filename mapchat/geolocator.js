@@ -16,7 +16,7 @@ function init(){
 }
 function createMap(Lat, Lng, settings){
 	var me = new google.maps.LatLng(Lat, Lng);
-	me.panTo(me);
+	map.panTo(me);
 	var map_background = new google.maps.Map(document.getElementById("map"), settings);
 	var marker = new google.maps.Marker({position: me, title: "Wow does this work?"});
 	marker.setMap(map_background);
