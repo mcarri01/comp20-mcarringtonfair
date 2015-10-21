@@ -4,7 +4,9 @@ function init(){
 	var me = new google.maps.LatLng(Lat, Lng);
 	var settings = {zoom:10, center: me, mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
+	console.log("1");
 	var request = new XMLHttpRequest();
+	console.log("2");
 	if (navigator.geolocation){
 		navigator.geolocation.getCurrentPosition(function(position) {
 			Lat = position.coords.latitude;
@@ -16,6 +18,7 @@ function init(){
 		alert("Geolocation is not supported by your web browser. Sorry!")};
 }
 function createMap(Lat, Lng, settings){
+	console.log("3");
 	var me = new google.maps.LatLng(Lat, Lng);
 	console.log(Lat);
 	console.log(Lng);
