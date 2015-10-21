@@ -13,8 +13,4 @@ function init(){
 			info.window.setContent(marker.title);
 			info.window.open(map, marker);
 		});
-	}
-	else {
-		alert("Geolocation is not supported by your web browser. Sorry!");
-	}
 }
