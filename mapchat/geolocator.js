@@ -9,7 +9,7 @@ function init(){
 			Lat = position.coords.latitude;
 			Lng = position.coords.longitude; 
 			createMap(Lat, Lng, settings);
-		)};, 
+		});, 
 	}
 	else {
 		alert("Geolocation is not supported by your web browser. Sorry!")};
