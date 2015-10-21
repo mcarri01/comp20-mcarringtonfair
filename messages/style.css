@@ -1,1 +1,4 @@
-/* Your CSS here... */
+#messages {
+	display: inline;
+	background-color: #63afae;
+	line-height: 150%;
