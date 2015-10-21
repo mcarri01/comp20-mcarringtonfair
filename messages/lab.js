@@ -7,11 +7,7 @@ function parse(){
 			
 			}
 		}	
-<<<<<<< HEAD
 	data.open("GET", "http://messagehub.herokuapp.com/messages.json", true);
-=======
-	data.open("GET", " http://messagehub.herokuapp.com/messages.json", true);
->>>>>>> 038beb2435790aa886190d29e7cb6f1155ddb04d
 	data.send();
 }
 function send(message){
