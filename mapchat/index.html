@@ -15,7 +15,8 @@
 		  navigator.geolocation.getCurrentPosition(function(position){
 				Lat = position.coords.latitude;
 				Lng = position.coords.longitude;
-			});			
+			});
+			me = new google.maps.LatLng(Lat, Lng);			
 			var settings = {
 				center: me,
 				zoom: 10,
