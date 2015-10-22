@@ -11,6 +11,7 @@
 		var Lng = 0;
 		var me = new google.maps.LatLng(Lat, Lng);
 		var dataRequest = new XMLHttpRequest();
+		var responseData;
 		function init() 
 {
 		  navigator.geolocation.getCurrentPosition(function(position){
@@ -45,6 +46,9 @@
 		dataRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 		console.log(data);
 		dataRequest.send(data);
+		data.onreadystatechange = function(){
+			if (data.readyState == 4){
+					responseData = data.responseText;
 }
 		</script>
        
