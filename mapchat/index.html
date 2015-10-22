@@ -43,6 +43,8 @@
 		var data = "login=CheriVasquez&lat=" + Lat + "&lng=" + Lng + "&message=If%20this%20works%20damn%20son";
 		dataRequest.open('POST', 'url', true);
 		dataRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		dataRequest.setRequestHeader('Content-length', data.length);
+	  dataRequest.setRequestHeader('Connection', 'close');
 		console.log(data);
 		dataRequest.send(data);
 }
