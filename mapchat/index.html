@@ -41,7 +41,7 @@
 {
 		var url = "https://secret-about-box.herokuapp.com/sendLocation";
 		var data = "login=CheriVasquez&lat=" + Lat + "&lng=" + Lng + "&message=If%20this%20works%20damn%20son";
-		dataRequest.open('POST', 'url', true);
+		dataRequest.open('POST', url, true);
 		dataRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 		console.log(data);
 		dataRequest.send(data);
