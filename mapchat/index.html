@@ -21,7 +21,7 @@
 
 		function init()
 		{
-			map = new google.maps.Map(document.getElementbyId('map'), settings);
+			map = new google.maps.Map(document.getElementbyId("map"), settings);
 			if (navigator.geolocation){
 				navigator.geolocation.getCurrentPosition(function(position) {
 					Lat = position.coords.latitude;
@@ -47,7 +47,7 @@
 
 		}
 
-		google.maps.event.addDomListener(window, 'load', initialize);
+		google.maps.event.addDomListener(window, 'load', init);
 
 		</script>
        
