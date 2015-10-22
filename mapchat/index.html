@@ -7,11 +7,13 @@
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 		<link rel="stylesheet" href="style.css" />
 		<script>
+		var Lat = 0;
+		var Lng = 0;
 		function init() {
 			var settings = {
 				center: navigator.geolocation.getCurrentPosition(function(position) {
-				var	Lat = position.coords.latitude;
-				var	Lng = position.coords.longitude;
+				Lat = position.coords.latitude;
+				Lng = position.coords.longitude;
 				}),
 				zoom: 10,
 				mapTypeId: google.maps.MapTypeId.ROADMAP
