@@ -8,13 +8,13 @@ function init(){
 		navigator.geolocation.getCurrentPosition(function(position) {
 			Lat = position.coords.latitude;
 			Lng = position.coords.longitude; 
-			createMap(Lat, Lng, settings);
+			createMap(Lat, Lng);
 		});
 	}
 	else {
 		alert("Geolocation is not supported by your web browser. Sorry!")};
 }
-function createMap(Lat, Lng, settings){
+function createMap(Lat, Lng){
 	console.log("3");
 	var settings = {zoom:10, center: me, mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
