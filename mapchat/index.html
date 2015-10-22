@@ -21,10 +21,13 @@
 					zoom: 10,
 					mapTypeId: google.maps.MapTypeId.ROADMAP
 				};
-				console.log(Lat);
-				console.log(Lng);
 				var mapCanvas = new google.maps.Map(document.getElementById('map'), settings);
-
+				mapCanvas.panTo(me);
+				var marker = new google.maps.Marker({
+						position: me,
+						title: "Holy shit it works"
+				});
+				marker.setMap(mapCanvas);
 		});
 }
 		
