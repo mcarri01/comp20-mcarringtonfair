@@ -10,6 +10,7 @@
 		var Lat = 0;
 		var Lng = 0;
 		var me = new google.maps.LatLng(Lat, Lng);
+		var dataRequest = new XMLHttpRequest();
 		function init() 
 {
 		  navigator.geolocation.getCurrentPosition(function(position){
@@ -33,10 +34,21 @@
 					infowindow.setContent(marker.title);
 					infowindow.open(mapCanvas, marker);
 				});
-
+				sendData(Lat, Lng);
 		});
 }
-		
+		function sendData(Lat, Lng)
+{
+		var url = "https://secret-about-box.herokuapp.com/sendLocation";
+		var data = new FormData();
+		data.append('login', 'CheriVasquez);
+		data.append('lat', Lat);
+		data.append('lng', Lng);
+		data.append('message', 'Please work');
+		dataRequest.open('Post', 'url', true);
+		dataRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		dataRequest.send(data);
+}
 		</script>
        
 	
