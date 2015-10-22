@@ -1,11 +1,10 @@
 function init(){
 	var Lat = 0;
 	var Lng = 0;
-	var me = new google.maps.LatLng(Lat, Lng);
 	var settings = {zoom:10, center: me, mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
 	console.log("1");
-	var request = new XMLHttpRequest();
+	//var request = new XMLHttpRequest();
 	console.log("2");
 	if (navigator.geolocation){
 		navigator.geolocation.getCurrentPosition(function(position) {
