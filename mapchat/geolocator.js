@@ -1,4 +1,4 @@
-function init(){
+function setMap(){
 	var Lat = 0;
 	var Lng = 0;
 	console.log("1");
