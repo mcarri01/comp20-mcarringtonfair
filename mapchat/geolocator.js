@@ -23,13 +23,14 @@ function createMap(Lat, Lng){
 	console.log(Lng);
 	console.log(me);
 	var map_background = new google.maps.Map(document.getElementById("map"), settings);
-	console.log(map);
+	console.log(map_background);
 	map_background.panTo(me);
 	var marker = new google.maps.Marker({
 		position: me,
 		title: "Wow does this work?"
 	});
 	marker.setMap(map_background);
+	console.log(marker);
 	var infowindow = new google.maps.InfoWindow();
 	google.maps.event.addListener(marker, 'click', function(){
 		infowindow.setContent(marker.title);
