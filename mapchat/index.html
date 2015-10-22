@@ -40,12 +40,7 @@
 		function sendData(Lat, Lng)
 {
 		var url = "https://secret-about-box.herokuapp.com/sendLocation";
-		var data = new FormData();
-		data.append('login', 'CheriVasquez');
-		data.append('lat', Lat);
-		data.append('lng', Lng);
-		data.append('message', 'Please work');
-		dataRequest.open('Post', 'url', true);
+		var data = "login=CheriVasquez&lat=" + Lat + "&lng=" + Lng + "&message=If%20this%20works%20damn%20son";
 		dataRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 		console.log(data);
 		dataRequest.send(data);
