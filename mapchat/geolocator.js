@@ -24,6 +24,7 @@ function createMap(Lat, Lng, settings){
 	console.log(Lng);
 	console.log(me);
 	var map_background = new google.maps.Map(document.getElementById("map"), settings);
+	console.log(map);
 	map_background.panTo(me);
 	var marker = new google.maps.Marker({
 		position: me,
