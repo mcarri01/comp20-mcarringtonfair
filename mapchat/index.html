@@ -9,25 +9,29 @@
 		<script>
 		var Lat = 0;
 		var Lng = 0;
+		var my_coords = [Lat, Lng];
 		var me = new google.maps.LatLng(Lat, Lng);
 		var dataRequest = new XMLHttpRequest();
-		var responseData;
+		var markers = new Array();
+	
 		function init() 
 {
 		  navigator.geolocation.getCurrentPosition(function(position){
 				Lat = position.coords.latitude;
 				Lng = position.coords.longitude;
+				my_coords = [Lat, Lng];
 				me = new google.maps.LatLng(Lat, Lng);			
-			  var settings = {
+				var settings = {
 					center: me,
 					zoom: 15,
 					mapTypeId: google.maps.MapTypeId.ROADMAP
 				};
 				var mapCanvas = new google.maps.Map(document.getElementById('map'), settings);
+			
 				mapCanvas.panTo(me);
 				var marker = new google.maps.Marker({
 						position: me,
-						title: "Holy shit it works"
+						title: "Netflix and chill hmu"
 				});
 				marker.setMap(mapCanvas);
 				var infowindow = new google.maps.InfoWindow();
@@ -35,20 +39,92 @@
 					infowindow.setContent(marker.title);
 					infowindow.open(mapCanvas, marker);
 				});
-				sendData(Lat, Lng);
+				/*var people = sendData(Lat, Lng);
+				console.log(people);
+				console.log(people[0]);
+				for (var n = 0; n < people.length; n++){
+						marker = new google.maps.Marker({
+							position: people[n].maplocation,
+							title: people[n].login + "</br>" + marker[n].message + "</br>" + marker[n].distance
+						});
+						marker.setMap(mapCanvas);
+						infowindow = new google.maps.InfoWindow();
+						google.maps.event.addListener(marker, 'click', function(){
+							infowindow.setContent(marker.title);
+							infowindow.open(mapCanvas, marker);
+						});
+
+				}*/
 		});
 }
 		function sendData(Lat, Lng)
-{
+{		
+	  var markers = new Array();
+		var responseData;
 		var url = "https://secret-about-box.herokuapp.com/sendLocation";
-		var data = "login=CheriVasquez&lat=" + Lat + "&lng=" + Lng + "&message=If%20this%20works%20damn%20son";
+		var data = "login=CheriVasquez&lat=" + Lat + "&lng=" + Lng + "&message=Netflix%20and%20chill%20hmu%20;)";
 		dataRequest.open('POST', url, true);
 		dataRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-		console.log(data);
 		dataRequest.send(data);
-		data.onreadystatechange = function(){
-			if (data.readyState == 4){
-					responseData = data.responseText;
+		dataRequest.onreadystatechange = function(){
+			if (dataRequest.readyState == 4 && dataRequest.status == 200){
+					responseData = JSON.parse(dataRequest.responseText);
+					
+				
+					for (var i = 0; i < responseData.length; i++){
+						var position = new google.maps.LatLng(responseData[i].lat, responseData[i].lng);
+						var coords = [responseData[i].lat, responseData[i].lng];
+						var d = distance(my_coords, coords);
+						var people = {"login": responseData[i].login, "distance": d, "maplocation":position, "message": responseData[i].message, "timeStamp": responseData[i].created_at}
+						markers.push(people);
+						
+					}
+			
+			for (var n = 0; n < markers.length; n++){
+						marker = new google.maps.Marker({
+							position: markers[n].maplocation,
+							title: markers[n].login + "</br>" + marker[n].message + "</br>" + marker[n].distance
+						});
+						marker.setMap(mapCanvas);
+						infowindow = new google.maps.InfoWindow();
+						google.maps.event.addListener(marker, 'click', function(){
+							infowindow.setContent(marker.title);
+							infowindow.open(mapCanvas, marker);
+						});
+
+				}
+			}
+		
+	
+		}	
+		
+}
+// Haversine Distance formula - from http://stackoverflow.com/a/30316500
+
+function distance(coords1, coords2) {
+  function toRad(x) { // function to convert degrees to radians
+    return x * Math.PI / 180;
+  }
+  var lon1 = coords1[0];
+  var lat1 = coords1[1];
+
+  var lon2 = coords2[0];
+  var lat2 = coords2[1];
+
+  var R = 6371; // km
+
+  var x1 = lat2 - lat1;
+  var dLat = toRad(x1);
+  var x2 = lon2 - lon1;
+  var dLon = toRad(x2)
+  var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  var d = R * c;
+
+  d /= 1.60934;
+  return d;
 }
 		</script>
        
