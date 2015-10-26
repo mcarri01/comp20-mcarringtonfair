@@ -51,7 +51,7 @@
 						var coords = [responseData[i].lat, responseData[i].lng];
 						var d = distance(my_coords, coords);
 						// creates object to store data for individuals
-						var person = {"login": responseData[i].login, "distance": d + "miles", "maplocation":position, "message": responseData[i].message, "timeStamp": responseData[i].created_at}
+						var person = {"login": responseData[i].login, "distance": d + "miles", "maplocation":position, "message": responseData[i].message, "time": responseData[i].created_at}
 						people.push(person); // stores in array
 					
 					}
@@ -59,7 +59,7 @@
 						var personInfo = people[n].login + "</br>" 
 														+ people[n].message + "</br>" 
 														+ people[n].distance + "</br>";
-													  //+ people[n].timeStamp; // used in infowindow content
+													  + people[n].time; // used in infowindow content
 						if (people[n].login == myself){ // if creating a marker for myself
 							var j = n; // stores location in list for later use
 							marker = new google.maps.Marker({
