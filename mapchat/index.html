@@ -7,6 +7,7 @@
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
 		<link rel="stylesheet" href="style.css" />
 		<script>
+// base coords and global variables
 		var Lat = 0;
 		var Lng = 0;
 		var my_coords = [Lat, Lng];
@@ -17,7 +18,7 @@
 		function init() 
 {
 		  navigator.geolocation.getCurrentPosition(function(position){
-				Lat = position.coords.latitude;
+				Lat = position.coords.latitude; // updates lat and lng
 				Lng = position.coords.longitude;
 				my_coords = [Lat, Lng];
 				me = new google.maps.LatLng(Lat, Lng);			
@@ -26,34 +27,36 @@
 					zoom: 15,
 					mapTypeId: google.maps.MapTypeId.ROADMAP
 				};
-				var mapCanvas = new google.maps.Map(document.getElementById('map'), settings);
-				sendData(Lat, Lng, mapCanvas);
+				var mapCanvas = new google.maps.Map(document.getElementById('map'), settings); // adds map to map div
+				sendData(Lat, Lng, mapCanvas); // sends data to sever and deals with response data
 		});
 }
 		function sendData(Lat, Lng, mapCanvas)
 {		
 
 		var responseData;
-		var myself = "CheriVasquez";
-		var url = "https://secret-about-box.herokuapp.com/sendLocation";
-		var data = "login="+ myself +"&lat=" + Lat + "&lng=" + Lng + "&message=Netflix%20and%20chill%20hmu%20;)";
+		var myself = "CheriVasquez"; // given username
+		var url = "https://secret-about-box.herokuapp.com/sendLocation"; // server
+		var data = "login="+ myself +"&lat=" + Lat + "&lng=" + Lng + "&message=Netflix%20and%20chill%20hmu%20;)"; // stringified data to send
 		dataRequest.open('POST', url, true);
 		dataRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 		dataRequest.send(data);
 		dataRequest.onreadystatechange = function(){
+			// if data was received properly
 			if (dataRequest.readyState == 4 && dataRequest.status == 200){
 					responseData = JSON.parse(dataRequest.responseText);
 					for (var i = 0; i < responseData.length; i++){
+						// for each person, stores response data
 						var position = new google.maps.LatLng(responseData[i].lat, responseData[i].lng);
 						var coords = [responseData[i].lat, responseData[i].lng];
 						var d = distance(my_coords, coords);
+						// creates object to store data for individuals
 						var person = {"login": responseData[i].login, "distance": d + "miles", "maplocation":position, "message": responseData[i].message, "timeStamp": responseData[i].created_at}
-						people.push(person);
+						people.push(person); // stores in array
 					
 					}
-				
 				for (var n = 0; n < people.length; n++){
-						var personInfo = people[n].login + "</br>" + people[n].message + "</br>" + people[n].distance;
+						var personInfo = people[n].login + "</br>" + people[n].message + "</br>" + people[n].distance; // used in infowindow content
 						if (people[n].login == myself){ // if creating a marker for myself
 							var j = n; // stores location in list for later use
 							marker = new google.maps.Marker({
@@ -77,9 +80,8 @@
 									mapCanvas.setCenter(marker.getPosition()); // centers
 									if (n == j) // if this infowindow is for myself
 										infowindow.setContent(marker.title + "</br>" + people[n].message);
-									else { // for everyone else
+									else  // for everyone else
 										infowindow.setContent(people[n].login + "</br>" + people[n].message + "</br>" + people[n].distance);
-									}
 									infowindow.open(mapCanvas, marker);
 							}
 						})(marker, n));
@@ -111,7 +113,7 @@ function distance(coords1, coords2) {
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   var d = R * c;
 
-  d /= 1.60934;
+  d /= 1.60934; // converts returned number in miles
   return d;
 }
 		</script>
