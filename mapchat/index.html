@@ -56,7 +56,10 @@
 					
 					}
 				for (var n = 0; n < people.length; n++){
-						var personInfo = people[n].login + "</br>" + people[n].message + "</br>" + people[n].distance + "</br>" + person[n].timeStamp; // used in infowindow content
+						var personInfo = people[n].login + "</br>" 
+														+ people[n].message + "</br>" 
+														+ people[n].distance + "</br>"
+													  + person[n].timeStamp; // used in infowindow content
 						if (people[n].login == myself){ // if creating a marker for myself
 							var j = n; // stores location in list for later use
 							marker = new google.maps.Marker({
