@@ -12,7 +12,7 @@
 		var my_coords = [Lat, Lng];
 		var me = new google.maps.LatLng(Lat, Lng);
 		var dataRequest = new XMLHttpRequest();
-		var markers = new Array();
+		var people = [];
 	
 		function init() 
 {
@@ -27,77 +27,65 @@
 					mapTypeId: google.maps.MapTypeId.ROADMAP
 				};
 				var mapCanvas = new google.maps.Map(document.getElementById('map'), settings);
-			
-				mapCanvas.panTo(me);
-				var marker = new google.maps.Marker({
-						position: me,
-						title: "Netflix and chill hmu"
-				});
-				marker.setMap(mapCanvas);
-				var infowindow = new google.maps.InfoWindow();
-				google.maps.event.addListener(marker, 'click', function(){
-					infowindow.setContent(marker.title);
-					infowindow.open(mapCanvas, marker);
-				});
-				/*var people = sendData(Lat, Lng);
-				console.log(people);
-				console.log(people[0]);
-				for (var n = 0; n < people.length; n++){
-						marker = new google.maps.Marker({
-							position: people[n].maplocation,
-							title: people[n].login + "</br>" + marker[n].message + "</br>" + marker[n].distance
-						});
-						marker.setMap(mapCanvas);
-						infowindow = new google.maps.InfoWindow();
-						google.maps.event.addListener(marker, 'click', function(){
-							infowindow.setContent(marker.title);
-							infowindow.open(mapCanvas, marker);
-						});
-
-				}*/
+				sendData(Lat, Lng, mapCanvas);
 		});
 }
-		function sendData(Lat, Lng)
+		function sendData(Lat, Lng, mapCanvas)
 {		
-	  var markers = new Array();
+
 		var responseData;
+		var myself = "CheriVasquez";
 		var url = "https://secret-about-box.herokuapp.com/sendLocation";
-		var data = "login=CheriVasquez&lat=" + Lat + "&lng=" + Lng + "&message=Netflix%20and%20chill%20hmu%20;)";
+		var data = "login="+ myself +"&lat=" + Lat + "&lng=" + Lng + "&message=Netflix%20and%20chill%20hmu%20;)";
 		dataRequest.open('POST', url, true);
 		dataRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 		dataRequest.send(data);
 		dataRequest.onreadystatechange = function(){
 			if (dataRequest.readyState == 4 && dataRequest.status == 200){
 					responseData = JSON.parse(dataRequest.responseText);
-					
-				
 					for (var i = 0; i < responseData.length; i++){
 						var position = new google.maps.LatLng(responseData[i].lat, responseData[i].lng);
 						var coords = [responseData[i].lat, responseData[i].lng];
 						var d = distance(my_coords, coords);
-						var people = {"login": responseData[i].login, "distance": d, "maplocation":position, "message": responseData[i].message, "timeStamp": responseData[i].created_at}
-						markers.push(people);
-						
+						var person = {"login": responseData[i].login, "distance": d + "miles", "maplocation":position, "message": responseData[i].message, "timeStamp": responseData[i].created_at}
+						people.push(person);
+					
 					}
-			
-			for (var n = 0; n < markers.length; n++){
-						marker = new google.maps.Marker({
-							position: markers[n].maplocation,
-							title: markers[n].login + "</br>" + marker[n].message + "</br>" + marker[n].distance
-						});
+				
+				for (var n = 0; n < people.length; n++){
+						var personInfo = people[n].login + "</br>" + people[n].message + "</br>" + people[n].distance;
+						if (people[n].login == myself){ // if creating a marker for myself
+							var j = n; // stores location in list for later use
+							marker = new google.maps.Marker({
+								position: people[n].maplocation,
+								title: people[n].login + " (me)",
+								icon: "http://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+							}); // creates unique purple icon for me
+							mapCanvas.panTo(me);
+						}
+						else { 
+							marker = new google.maps.Marker({
+								position: people[n].maplocation,
+								title: people[n].login
+							});
+						}
 						marker.setMap(mapCanvas);
-						infowindow = new google.maps.InfoWindow();
-						google.maps.event.addListener(marker, 'click', function(){
-							infowindow.setContent(marker.title);
-							infowindow.open(mapCanvas, marker);
-						});
-
+						var infowindow = new google.maps.InfoWindow();
+						google.maps.event.addListener(marker, 'click', (function(marker, n){
+							return function(){
+									mapCanvas.setZoom(15); // zoom in on marker when clicked
+									mapCanvas.setCenter(marker.getPosition()); // centers
+									if (n == j) // if this infowindow is for myself
+										infowindow.setContent(marker.title + "</br>" + people[n].message);
+									else { // for everyone else
+										infowindow.setContent(people[n].login + "</br>" + people[n].message + "</br>" + people[n].distance);
+									}
+									infowindow.open(mapCanvas, marker);
+							}
+						})(marker, n));
 				}
 			}
-		
-	
 		}	
-		
 }
 // Haversine Distance formula - from http://stackoverflow.com/a/30316500
 
