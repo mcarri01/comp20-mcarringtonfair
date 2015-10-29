@@ -77,9 +77,13 @@ function renderMap(people, myself, mapCanvas)
 				mapCanvas.setCenter(marker.getPosition()); // centers
 				prev_info = infowindow;
 				if (n == j) // if this infowindow is for myself
-					infowindow.setContent("<span id='info'>User: </span>" + marker.title + "</br> <span id='info'>Message: </span>" + people[n].message);
+					infowindow.setContent("<span id='info'>User: </span>" + marker.title
+					+ "</br> <span id='info'>Message: </span>" + people[n].message);
 				else  // for everyone else
-					infowindow.setContent("<span id='info'>User: </span>" + people[n].login + "</br> <span id='info'>Message: </span>" + people[n].message + "</br> <span id='info'>Distance: </span>" + people[n].distance + "</br> <span id='info'>Time Posted: </span>" + people[n].time);
+					infowindow.setContent("<span id='info'>User: </span>" + people[n].login
+					+ "</br> <span id='info'>Message: </span>" + people[n].message
+					+ "</br> <span id='info'>Distance: </span>" + people[n].distance
+					+ "</br> <span id='info'>Time Posted: </span>" + people[n].time);
 					infowindow.open(mapCanvas, marker);
 			}
 		})(marker, n));
