@@ -80,7 +80,11 @@ function renderMap(people, myself, mapCanvas)
 					infowindow.setContent("<span id='info'>User: </span>" + marker.title
 					+ "</br> <span id='info'>Message: </span>" + people[n].message);
 				else  // for everyone else
+<<<<<<< HEAD
 					infowindow.setContent("<span id='info'>User: </span>" + people[n].login 
+=======
+					infowindow.setContent("<span id='info'>User: </span>" + people[n].login
+>>>>>>> ed4779150f901938e592b224a0c678058741d7f8
 					+ "</br> <span id='info'>Message: </span>" + people[n].message
 					+ "</br> <span id='info'>Distance: </span>" + people[n].distance
 					+ "</br> <span id='info'>Time Posted: </span>" + people[n].time);
