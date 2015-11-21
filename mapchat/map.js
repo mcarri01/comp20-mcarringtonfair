@@ -26,7 +26,7 @@ function sendData(Lat, Lng, mapCanvas)
 {		
 	var responseData;
 	var myself = "CheriVasquez"; // given username
-	var url = "https://shrouded-beyond-1239.herokuapp.com/sendLocation"; // server
+	var url = "http://shrouded-beyond-1239.herokuapp.com/sendLocation"; // server
 	var data = "login="+ myself +"&lat=" + Lat + "&lng=" + Lng + "&message=Netflix%20and%20chill%20hmu%20;)"; // stringified data to send
 	dataRequest.open('POST', url, true);
 	dataRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
